@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forever Pages — Digital Wedding Websites</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --blush:        #F4A7B9;
+      --blush-mid:    #E8879E;
+      --blush-light:  #FBE8EE;
+      --sage:         #B2C9AD;
+      --sage-mid:     #7BA874;
+      --sage-light:   #EBF3E9;
+      --champ:        #F5E6C8;
+      --champ-mid:    #C4A040;
+      --champ-light:  #FDF6E9;
+      --bg:           #FAFAFA;
+      --text:         #2A2A2A;
+      --muted:        #7A7A7A;
+      --faint:        #B0B0B0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .f-script  { font-family: 'Great Vibes', cursive; }
+    .f-display { font-family: 'Cormorant Garamond', serif; }
+
+    /* ── Navbar ───────────────────────────────────────── */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 22px 32px;
+      transition: background 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
+    }
+    #nav.scrolled {
+      background: rgba(250,250,250,0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+      padding: 14px 32px;
+    }
+    .nav-inner {
+      max-width: 1080px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-family: 'Great Vibes', cursive; font-size: 28px; color: var(--text); text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a {
+      font-size: 13px; color: var(--muted); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blush-mid); }
+    @media (max-width: 680px) { .nav-links { display: none; } }
+
+    /* ── Buttons ──────────────────────────────────────── */
+    .btn-primary {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--blush) 0%, var(--blush-mid) 100%);
+      color: #fff;
+      padding: 13px 30px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.2px;
+      text-decoration: none;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 4px 18px rgba(232,135,158,0.35);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(232,135,158,0.45);
+    }
+    .btn-secondary {
+      display: inline-block;
+      background: transparent;
+      color: var(--text);
+      padding: 12px 30px;
+      border-radius: 50px;
+      border: 1.5px solid rgba(178,201,173,0.65);
+      font-size: 14px;
+      font-weight: 400;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+    .btn-secondary:hover {
+      background: var(--sage-light);
+      border-color: var(--sage);
+      transform: translateY(-2px);
+    }
+
+    /* ── Animations ───────────────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .fade-in {
+      opacity: 0;
+      transition: opacity 0.75s ease;
+    }
+    .fade-up.visible, .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    .d1 { transition-delay: 0.08s; }
+    .d2 { transition-delay: 0.18s; }
+    .d3 { transition-delay: 0.28s; }
+    .d4 { transition-delay: 0.38s; }
+    .d5 { transition-delay: 0.48s; }
+
+    /* ── Section label ────────────────────────────────── */
+    .label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--blush-mid);
+    }
+
+    /* ── Divider ──────────────────────────────────────── */
+    .vine {
+      display: flex; align-items: center; gap: 12px; justify-content: center;
+      margin: 12px auto;
+    }
+    .vine-line {
+      width: 52px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--blush-mid));
+    }
+    .vine-line.r { background: linear-gradient(90deg, var(--blush-mid), transparent); }
+
+    /* ── Cards ────────────────────────────────────────── */
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 2px 22px rgba(0,0,0,0.05);
+      transition: transform 0.28s ease, box-shadow 0.28s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.09);
+    }
+
+    /* ── Icon bubbles ─────────────────────────────────── */
+    .icon-bubble {
+      width: 50px; height: 50px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── Pricing ──────────────────────────────────────── */
+    .price-card {
+      background: #fff;
+      border-radius: 24px;
+      padding: 38px 30px;
+      border: 1.5px solid transparent;
+      transition: transform 0.28s ease, box-shadow 0.28s ease;
+      box-shadow: 0 2px 22px rgba(0,0,0,0.05);
+    }
+    .price-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 44px rgba(0,0,0,0.1);
+    }
+    .price-card.featured {
+      background: linear-gradient(155deg, #FDF6E9 0%, #FBE8EE 100%);
+      border-color: var(--blush);
+      box-shadow: 0 8px 40px rgba(244,167,185,0.2);
+    }
+    .price-card.featured:hover {
+      box-shadow: 0 18px 52px rgba(244,167,185,0.3);
+    }
+    .price-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 46px;
+      font-weight: 300;
+      line-height: 1;
+      color: var(--text);
+    }
+
+    /* ── Check list ───────────────────────────────────── */
+    .check-row {
+      display: flex; align-items: flex-start; gap: 10px;
+      margin-bottom: 11px; font-size: 13.5px;
+    }
+    .chk {
+      width: 18px; height: 18px;
+      border-radius: 50%; flex-shrink: 0; margin-top: 1px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ── QR mockup ────────────────────────────────────── */
+    .qr-card {
+      background: #fff;
+      border-radius: 28px;
+      padding: 36px;
+      box-shadow: 0 20px 60px rgba(244,167,185,0.15);
+      display: inline-block;
+    }
+
+    /* ── Device mockups ───────────────────────────────── */
+    .phone {
+      width: 210px; height: 430px;
+      background: #fff;
+      border-radius: 36px;
+      border: 8px solid #1a1a1a;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.15);
+      flex-shrink: 0;
+    }
+    .phone-notch {
+      width: 70px; height: 22px;
+      background: #1a1a1a;
+      border-radius: 0 0 14px 14px;
+      position: absolute; top: 0; left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+    .laptop {
+      border-radius: 10px 10px 0 0;
+      border: 7px solid #222;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+      flex-shrink: 0;
+    }
+    .laptop-base {
+      height: 18px;
+      background: #222;
+      border-radius: 0 0 8px 8px;
+    }
+    .laptop-inner { width: 100%; height: 100%; }
+
+    /* ── Testimonials ─────────────────────────────────── */
+    .quote-big {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 72px; line-height: 0.55;
+      color: var(--blush); font-weight: 300;
+      display: block; margin-bottom: 4px;
+    }
+
+    /* ── Blog ─────────────────────────────────────────── */
+    .blog-card {
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 2px 22px rgba(0,0,0,0.05);
+      transition: transform 0.28s ease, box-shadow 0.28s ease;
+    }
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 42px rgba(0,0,0,0.09);
+    }
+    .blog-thumb { height: 180px; overflow: hidden; }
+
+    /* ── Section backgrounds ──────────────────────────── */
+    .bg-warm { background: linear-gradient(180deg, #FAFAFA 0%, #FDF8F5 60%, #FAFAFA 100%); }
+    .bg-hero  { background: linear-gradient(180deg, #FDF8F5 0%, #FAFAFA 100%); }
+    .bg-cta   { background: linear-gradient(155deg, #FDF8F5 0%, #FBE8EE 55%, #EBF3E9 100%); }
+
+    /* ── Footer ───────────────────────────────────────── */
+    footer a { text-decoration: none; color: #6B6B6B; transition: color 0.2s; }
+    footer a:hover { color: #fff; }
+
+    /* ── Email input ──────────────────────────────────── */
+    .email-input {
+      border: 1.5px solid rgba(178,201,173,0.55);
+      border-radius: 50px;
+      padding: 12px 22px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13.5px;
+      outline: none;
+      color: var(--text);
+      background: #fff;
+      width: 270px;
+      transition: border-color 0.2s;
+    }
+    .email-input:focus { border-color: var(--sage); }
+    .email-input::placeholder { color: var(--faint); }
+
+    /* ── Radial glows (hero) ──────────────────────────── */
+    .glow {
+      position: absolute; border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* ── Mobile hamburger ─────────────────────────────── */
+    .hamburger {
+      display: none; cursor: pointer;
+      background: none; border: none; padding: 4px;
+      flex-direction: column; gap: 5px; z-index: 200;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 1.5px;
+      background: var(--text); border-radius: 2px;
+      transition: all .3s ease;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    @media (max-width: 680px) { .hamburger { display: flex; } }
+
+    /* ── Mobile menu overlay ──────────────────────────── */
+    .mobile-menu {
+      position: fixed; inset: 0; z-index: 99;
+      background: rgba(250,250,250,.97);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 10px;
+      opacity: 0; pointer-events: none;
+      transition: opacity .35s ease;
+    }
+    .mobile-menu.open { opacity: 1; pointer-events: all; }
+    .mobile-menu-logo { font-family: 'Great Vibes', cursive; font-size: 38px; color: var(--text); margin-bottom: 20px; text-decoration: none; }
+    .mobile-menu a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px; font-weight: 300;
+      color: var(--text); text-decoration: none;
+      padding: 10px 0; transition: color .2s;
+    }
+    .mobile-menu a:hover { color: var(--blush-mid); }
+    .mobile-menu-cta { margin-top: 20px; }
+
+    /* ── Demo carousel ────────────────────────────────── */
+    .demo-carousel { overflow: hidden; }
+    .demo-track {
+      display: flex;
+      transition: transform .65s cubic-bezier(.4,0,.2,1);
+    }
+    .demo-slide {
+      min-width: 100%;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .carousel-nav {
+      display: flex; align-items: center; gap: 20px;
+      justify-content: center; margin-top: 32px;
+    }
+    .carousel-btn {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: white; border: none; cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0,0,0,.1);
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s ease; color: var(--text);
+    }
+    .carousel-btn:hover { transform: scale(1.1); box-shadow: 0 6px 22px rgba(0,0,0,.15); }
+    .carousel-dots { display: flex; gap: 8px; align-items: center; }
+    .carousel-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--faint); cursor: pointer;
+      transition: all .25s ease; border: none;
+    }
+    .carousel-dot.active { background: var(--blush-mid); transform: scale(1.35); }
+
+    /* ── Device frame (iframe version) ───────────────── */
+    .device-scene {
+      display: flex; align-items: flex-end; justify-content: center;
+      gap: 32px; flex-wrap: wrap;
+    }
+    .device-label {
+      text-align: center; margin-top: 20px;
+      font-family: 'Cormorant Garamond', serif; font-size: 13px;
+      font-style: italic; color: var(--muted);
+    }
+
+    /* ── Hero photos ──────────────────────────────────── */
+    .hero-photos { pointer-events: none; }
+    @media (max-width: 1100px) { .hero-photos { display: none; } }
+
+    /* ── Features grid ────────────────────────────────── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+    @media (max-width: 900px)  { .features-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px)  { .features-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
+  </style>
+</head>
+<body>
+
+<!-- ╔══════════════════════════════════════════════════╗ -->
+<!-- ║  NAVBAR                                          ║ -->
+<!-- ╚══════════════════════════════════════════════════╝ -->
+<!-- Mobile menu overlay -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#" class="mobile-menu-logo" onclick="closeMobileMenu()">Forever Pages</a>
+  <a href="#features" onclick="closeMobileMenu()">Features</a>
+  <a href="#demo" onclick="closeMobileMenu()">Demos</a>
+  <a href="#pricing" onclick="closeMobileMenu()">Pricing</a>
+  <a href="#testimonials" onclick="closeMobileMenu()">Testimonials</a>
+  <a href="#blog" onclick="closeMobileMenu()">Blog</a>
+  <a href="#pricing" class="btn-primary mobile-menu-cta" onclick="closeMobileMenu()">Get Started</a>
+</div>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Forever Pages</a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#demo">Demos</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#blog">Blog</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;">
+      <a href="#pricing" class="btn-primary" style="font-size:13px;padding:10px 24px;">Get Started</a>
+      <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ╔══════════════════════════════════════════════════╗ -->
+<!-- ║  HERO                                            ║ -->
+<!-- ╚══════════════════════════════════════════════════╝ -->
+<section style="position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;" class="bg-hero">
+
+  <!-- Floating petals canvas -->
+  <canvas id="petal-canvas" style="position:absolute;inset:0;pointer-events:none;"></canvas>
+
+  <!-- Soft radial glows -->
+  <div class="glow" style="width:520px;height:520px;top:-80px;left:-80px;background:radial-gradient(circle,rgba(244,167,185,0.18) 0%,transparent 70%);"></div>
+  <div class="glow" style="width:480px;height:480px;bottom:-60px;right:-60px;background:radial-gradient(circle,rgba(178,201,173,0.15) 0%,transparent 70%);"></div>
+
+  <!-- Floating photo frames (desktop only) -->
+  <div class="hero-photos">
+    <!-- Left column -->
+    <div style="position:absolute;left:3%;top:50%;transform:translateY(-52%) rotate(-4deg);z-index:1;">
+      <div style="background:#fff;border-radius:12px;padding:8px 8px 22px;box-shadow:0 16px 48px rgba(0,0,0,0.12);width:170px;">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=340&q=80&fit=crop&crop=center" alt="Wedding ceremony" style="width:100%;height:210px;object-fit:cover;border-radius:7px;display:block;">
+        <div style="text-align:center;margin-top:10px;font-family:'Great Vibes',cursive;font-size:14px;color:#aaa;">Our Day</div>
+      </div>
+    </div>
+    <div style="position:absolute;left:4.5%;top:50%;transform:translateY(10%) rotate(2deg);z-index:1;">
+      <div style="background:#fff;border-radius:12px;padding:8px 8px 18px;box-shadow:0 12px 36px rgba(0,0,0,0.1);width:130px;">
+        <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=260&q=80&fit=crop&crop=center" alt="Wedding flowers" style="width:100%;height:130px;object-fit:cover;border-radius:7px;display:block;">
+      </div>
+    </div>
+
+    <!-- Right column -->
+    <div style="position:absolute;right:3.5%;top:50%;transform:translateY(-60%) rotate(3deg);z-index:1;">
+      <div style="background:#fff;border-radius:12px;padding:8px 8px 22px;box-shadow:0 16px 48px rgba(0,0,0,0.12);width:155px;">
+        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=310&q=80&fit=crop&crop=faces" alt="Bride" style="width:100%;height:190px;object-fit:cover;border-radius:7px;display:block;">
+        <div style="text-align:center;margin-top:10px;font-family:'Great Vibes',cursive;font-size:14px;color:#aaa;">Emma</div>
+      </div>
+    </div>
+    <div style="position:absolute;right:4%;top:50%;transform:translateY(5%) rotate(-2deg);z-index:1;">
+      <div style="background:#fff;border-radius:12px;padding:8px 8px 18px;box-shadow:0 12px 36px rgba(0,0,0,0.1);width:138px;">
+        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=276&q=80&fit=crop&crop=center" alt="Wedding rings" style="width:100%;height:120px;object-fit:cover;border-radius:7px;display:block;">
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero content -->
+  <div style="position:relative;z-index:2;text-align:center;padding:0 24px;max-width:760px;margin:0 auto;">
+
+    <!-- Script names -->
+    <div class="f-script fade-up d1" style="font-size:clamp(64px,12vw,110px);color:var(--text);line-height:1.05;margin-bottom:8px;">
+      Emma &amp; James
+    </div>
+
+    <!-- Vine divider -->
+    <div class="vine fade-up d2">
+      <div class="vine-line"></div>
+      <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z" fill="#F4A7B9"/></svg>
+      <div class="vine-line r"></div>
+    </div>
+
+    <!-- Tagline -->
+    <p class="f-display fade-up d2" style="font-size:clamp(18px,3vw,24px);font-style:italic;font-weight:300;color:var(--muted);margin-bottom:14px;margin-top:6px;">
+      Your perfect digital wedding, beautifully crafted
+    </p>
+    <p class="fade-up d3" style="font-size:15px;color:#9B9B9B;max-width:480px;margin:0 auto 40px;line-height:1.75;">
+      Create a stunning digital experience your guests will cherish forever. RSVP, gallery, live stream — everything in one elegant place.
+    </p>
+
+    <!-- CTA buttons -->
+    <div class="fade-up d4" style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;">
+      <a href="#pricing" class="btn-primary">Get Started Today</a>
+      <a href="#demo" class="btn-secondary">View Live Demo</a>
+    </div>
+
+    <!-- Stats row -->
+    <div class="fade-up d5" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px;padding-top:40px;border-top:1px solid rgba(0,0,0,0.06);">
+      <div>
+        <div class="f-display" style="font-size:32px;font-weight:300;color:var(--blush-mid);">2,400+</div>
+        <div style="font-size:12px;color:var(--faint);margin-top:4px;">Couples served</div>
+      </div>
+      <div>
+        <div class="f-display" style="font-size:32px;font-weight:300;color:var(--sage-mid);">98%</div>
+        <div style="font-size:12px;color:var(--faint);margin-top:4px;">Guest satisfaction</div>
+      </div>
+      <div>
+        <div class="f-display" style="font-size:32px;font-weight:300;color:var(--champ-mid);">50K+</div>
+        <div style="font-size:12px;color:var(--faint);margin-top:4px;">RSVPs collected</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll cue -->
+  <div style="position:absolute;bottom:32px;left:50%;transform:translateX(-50%);text-align:center;" class="fade-in d5">
+    <div style="width:1px;height:44px;background:linear-gradient(180deg,transparent,var(--blush));margin:0 auto;"></div>
+    <div style="font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--faint);margin-top:6px;">Scroll</div>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════╗ -->
+<!-- ║  WHY GO DIGITAL                                  ║ -->
+<!-- ╚══════════════════════════════════════════════════╝ -->
+<section style="padding:100px 24px;" id="why">
+  <div style="max-width:1080px;margin:0 auto;">
+
+    <div style="text-align:center;margin-bottom:60px;">
+      <div class="label fade-up">The modern wedding</div>
+      <h2 class="f-display fade-up d1" style="font-size:clamp(34px,5vw,50px);font-weight:300;margin-top:10px;">Why go <em>digital?</em></h2>
+      <p class="fade-up d2" style="font-size:15px;color:var(--muted);max-width:520px;margin:14px auto 0;line-height:1.8;">Paper invites are beautiful, but a digital wedding hub brings your entire celebration together in one seamless experience.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;">
+
+      <div class="card fade-up d1">
+        <div class="icon-bubble" style="background:var(--blush-light);margin-bottom:18px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M13 2L4.5 13.5H12l-1 8.5L19.5 10H12L13 2z" stroke="#E8879E" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="f-display" style="font-size:19px;font-weight:500;margin-bottom:8px;">Instant Updates</h3>
+        <p style="font-size:13.5px;color:var(--muted);line-height:1.75;">Change venue, time, or details in seconds. Your guests always have the latest information at a glance.</p>
+      </div>
+
+      <div class="card fade-up d2">
+        <div class="icon-bubble" style="background:var(--sage-light);margin-bottom:18px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#7BA874" stroke-width="1.5"/><path d="M8 12l2.5 2.5L16 9" stroke="#7BA874" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="f-display" style="font-size:19px;font-weight:500;margin-bottom:8px;">Eco-Friendly</h3>
+        <p style="font-size:13.5px;color:var(--muted);line-height:1.75;">Reduce paper waste without compromising on elegance. Beautiful for you, kinder to our planet.</p>
+      </div>
+
+      <div class="card fade-up d3">
+        <div class="icon-bubble" style="background:var(--champ-light);margin-bottom:18px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#C4A040" stroke-width="1.5"/><path d="M12 7v5l3 3" stroke="#C4A040" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3 class="f-display" style="font-size:19px;font-weight:500;margin-bottom:8px;">Save Time</h3>
+        <p style="font-size:13.5px;color:var(--muted);line-height:1.75;">Automate RSVPs, collect dietary needs, and manage your guest list — without a single spreadsheet.</p>
+      </div>
+
+      <div class="card fade-up d4">
+        <div class="icon-bubble" style="background:#F0EDF8;margin-bottom:18px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" stroke="#9B7FC8" stroke-width="1.5"/></svg>
+        </div>
+        <h3 class="f-display" style="font-size:19px;font-weight:500;margin-bottom:8px;">Lasting Memory</h3>
+        <p style="font-size:13.5px;color:var(--muted);line-height:1.75;">Your wedding site lives on forever. Guests can revisit photos, messages, and memories for years to come.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════╗ -->
+<!-- ║  FEATURES GRID                                   ║ -->
+<!-- ╚══════════════════════════════════════════════════╝ -->
+<section id="features" style="padding:100px 24px;" class="bg-warm">
+  <div style="max-width:1080px;margin:0 auto;">
+
+    <div style="text-align:center;margin-bottom:60px;">
+      <div class="label fade-up">Everything you need</div>
+      <h2 class="f-display fade-up d1" style="font-size:clamp(34px,5vw,50px);font-weight:300;margin-top:10px;">All the <em>features</em></h2>
+      <p class="fade-up d2" style="font-size:15px;color:var(--muted);max-width:520px;margin:14px auto 0;line-height:1.8;">Every tool you need to create an unforgettable digital wedding experience for you and your guests.</p>
+    </div>
+
+    <div class="features-grid">
+
+      <!-- Feature cards -->
+      <div class="card text-center fade-up d1" style="padding:26px 20px;">
+        <div class="icon-bubble" style="background:var(--blush-light);margin:0 auto 14px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="#E8879E" stroke-width="1.5"/><path d="M3 9h18M8 2v4M16 2v4" stroke="#E8879E" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h4 class="f-display" style="font-size:17px;font-weight:500;margin-bottom:5px;">Wedding Website</h4>
+        <p style="font-size:12px;color:var(--muted);line-height:1.65;">Custom-designed pages for your story</p>
+      </div>
+
+      <div class="card text-center fade-up d2" style="padding:26px 20px;">
+        <div class="icon-bubble" style="background:var(--sage-light);margin:0 auto 14px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="#7BA874" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#7BA874" stroke-width="1.5"/></svg>
+        </div>
+        <h4 class="f-display" style="font-size:17px;font-weight:500;margin-bottom:5px;">RSVP Management</h4>
+        <p style="font-size:12px;color:var(--muted);line-height:1.65;">Smart forms with dietary handling</p>
+      </div>
+
+      <div class="card text-center fade-up d3" style="padding:26px 20px;">
+        <div class="icon-bubble" style="background:var(--champ-light);margin:0 auto 14px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="#C4A040" stroke-width="1.5"/><circle cx="8.5" cy="8.5" r="1.5" fill="#C4A040"/><path d="M21 15l-5-5-4 4-3-3-3 3" stroke="#C4A040" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h4 class="f-display" style="font-size:17px;font-weight:500;margin-bottom:5px;">Photo Gallery</h4>
+        <p style="font-size:12px;color:var(--muted);line-height:1.65;">Beautiful masonry gallery for your memories</p>
+      </div>
+
+      <div class="card text-center fade-up d4" style="padding:26px 20px;">
+        <div class="icon-bubble" style="background:#F0EDF8;margin:0 auto 14px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#9B7FC8" stroke-width="1.5"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#9B7FC8" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h4 class="f-display" style="font-size:17px;font-weight:500;margin-bottom:5px;">Guest List</h4>
+        <p style="font-size:12px;color:var(--muted);line-height:1.65;">Manage all guests in one dashboard</p>
+      </div>
+
+      <div class="card text-center fade-up d1" style="padding:26px 20px;">
+        <div class="icon-bubble" style="background:var(--blush-light);margin:0 auto 14px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#E8879E" stroke-width="1.5"/><path d="M10 8l6 4-6 4V8z" fill="#E8879E"/></svg>
+        </div>
+        <h4 class="f-display" style="font-size:17px;font-weight:500;margin-bottom:5px;">Live Stream</h4>
+        <p style="font-size:12px;color:var(--muted);line-height:1.65;">Stream to remote loved ones worldwide</p>
+      </div>
+
+      <div class="card text-center fade-up d2" style="padding:26px 20px;">
+        <div class="icon-bubble" style="background:var(--sage-light);margin:0 auto 14px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 2H4a2 2 0 00-2 2v14l4-4h14a2 2 0 002-2V4a2 2 0 00-2-2z" stroke="#7BA874" stroke-width="1.5"/><path d="M8 10h8M8 13h5" stroke="#7BA874" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h4 class="f-display" style="font-size:17px;font-weight:500;margin-bottom:5px;">Guestbook</h4>
+        <p style="font-size:12px;color:var(--muted);line-height:1.65;">Digital messages from all your loved ones</p>
+      </div>
+
+      <div class="card text-center fade-up d3" style="padding:26px 20px;">
+        <div class="icon-bubble" style="background:var(--champ-light);margin:0 auto 14px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 15l-4-4h8l-4 4z" fill="#C4A040"/><circle cx="9" cy="8.5" r="2" stroke="#C4A040" stroke-width="1.5"/><circle cx="15" cy="8.5" r="2" stroke="#C4A040" stroke-width="1.5"/><rect x="3" y="3" width="18" height="18" rx="3" stroke="#C4A040" stroke-width="1.5"/></svg>
+        </div>
+        <h4 class="f-display" style="font-size:17px;font-weight:500;margin-bottom:5px;">Wedding Games</h4>
+        <p style="font-size:12px;color:var(--muted);line-height:1.65;">Quizzes &amp; fun activities for guests</p>
+      </div>
+
+      <div class="card text-center fade-up d4" style="padding:26px 20px;">
+        <div class="icon-bubble" style="background:#F0EDF8;margin:0 auto 14px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" rx="2" stroke="#9B7FC8" stroke-width="1.5"/><path d="M2 10h20M7 15h3M12 15h3" stroke="#9B7FC8" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h4 class="f-display" style="font-size:17px;font-weight:500;margin-bottom:5px;">Gift Registry</h4>
+        <p style="font-size:12px;color:var(--muted);line-height:1.65;">Link your registry or take contributions</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════╗ -->
+<!-- ║  QR CODE SECTION                                 ║ -->
+<!-- ╚══════════════════════════════════════════════════╝ -->
+<section id="qr" style="padding:100px 24px;">
+  <div style="max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+
+    <!-- Visual -->
+    <div style="display:flex;justify-content:center;" class="fade-in">
+      <div style="position:relative;">
+        <div class="qr-card">
+          <!-- QR grid mock -->
+          <div style="width:176px;height:176px;margin:0 auto 20px;border-radius:12px;border:1.5px solid #f0f0f0;padding:14px;position:relative;">
+            <div style="display:grid;grid-template-columns:repeat(10,1fr);grid-template-rows:repeat(10,1fr);width:100%;height:100%;gap:2px;">
+              <!-- Row 1 -->
+              <div style="background:#222;border-radius:1px;"></div><div style="background:#222;border-radius:1px;"></div><div style="background:#222;border-radius:1px;"></div><div style="background:#222;border-radius:1px;"></div><div style="background:#222;border-radius:1px;"></div><div></div><div style="background:#222;border-radius:1px;"></div><div></div><div style="background:#222;border-radius:1px;"></div><div style="background:#222;border-radius:1px;"></div>
+              <!-- Row 2 -->
+              <div style="background:#222;border-radius:1px;"></div><div></div><div></div><div></div><div style="background:#222;border-radius:1px;"></div><div></div><div></div><div style="background:#F4A7B9;border-radius:1px;"></div><div></div><div style="background:#222;border-radius:1px;"></div>
+              <!-- Row 3 -->
+              <div style="background:#222;border-radius:1px;"></div><div></div><div style="background:#222;border-radius:1px;"></div><div></div><div style="background:#222;border-radius:1px;"></div><div></div><div style="background:#F4A7B9;border-radius:1px;"></div><div></div><div></div><div style="background:#222;border-radius:1px;"></div>
+              <!-- Row 4 -->
+              <div style="background:#222;border-radius:1px;"></div><div></div><div></div><div></div><div style="background:#222;border-radius:1px;"></div><div></div><div style="background:#222;border-radius:1px;"></div><div></div><div style="background:#B2C9AD;border-radius:1px;"></div><div style="background:#222;border-radius:1px;"></div>
+              <!-- Row 5 -->
+              <div style="background:#222;border-radius:1px;"></div><div style="background:#222;border-radius:1px;"></div><div style="background:#222;border-radius:1px;"></div><div style="background:#222;border-radius:1px;"></div><div style="background:#222;border-radius:1px;"></div><div></div><div></div><div style="background:#B2C9AD;border-radius:1px;"></div><div></div><div></div>
+              <!-- Row 6 -->
+              <div></div><div></div><div style="background:#F5E6C8;border-radius:1px;"></div><div></div><div></div><div></div><div style="background:#222;border-radius:1px;"></div><div></div><div style="background:#222;border-radius:1px;"></div><div></div>
+              <!-- Row 7 -->
+              <div style="background:#B2C9AD;border-radius:1px;"></div><div style="background:#222;border-radius:1px;"></div><div></div><div style="background:#222;border-radius:1px;"></div><div></div><div></div><div style="background:#222;border-radius:1px;"></div><div></div><div style="background:#222;border-radius:1px;"></div><div style="background:#222;border-radius:1px;"></div>
+              <!-- Row 8 -->
+              <div style="background:#222;border-radius:1px;"></div><div></div><div style="background:#222;border-radius:1px;"></div><div></div><div style="background:#F4A7B9;border-radius:1px;"></div><div style="background:#222;border-radius:1px;"></div><div></div><div style="background:#222;border-radius:1px;"></div><div></div><div></div>
+              <!-- Row 9 -->
+              <div></div><div style="background:#222;border-radius:1px;"></div><div></div><div></div><div style="background:#222;border-radius:1px;"></div><div></div><div style="background:#F5E6C8;border-radius:1px;"></div><div></div><div style="background:#222;border-radius:1px;"></div><div></div>
+              <!-- Row 10 -->
+              <div style="background:#222;border-radius:1px;"></div><div style="background:#222;border-radius:1px;"></div><div style="background:#222;border-radius:1px;"></div><div></div><div></div><div style="background:#222;border-radius:1px;"></div><div></div><div style="background:#222;border-radius:1px;"></div><div style="background:#222;border-radius:1px;"></div><div style="background:#222;border-radius:1px;"></div>
+            </div>
+            <!-- Centre heart overlay -->
+            <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="#F4A7B9"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/></svg>
+            </div>
+          </div>
+          <div style="text-align:center;">
+            <div class="f-display" style="font-size:18px;font-weight:500;">Emma &amp; James</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:3px;">14th June 2025</div>
+            <div style="font-size:11px;color:var(--faint);margin-top:5px;">emmajames.forever-pages.co.za</div>
+          </div>
+        </div>
+        <!-- Floating tooltip -->
+        <div style="position:absolute;top:-14px;right:-18px;background:#fff;border-radius:12px;padding:7px 13px;box-shadow:0 4px 18px rgba(0,0,0,0.1);border:1px solid var(--blush-light);">
+          <div style="font-size:11px;font-weight:500;color:var(--blush-mid);">Scan to visit</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Copy -->
+    <div class="fade-up">
+      <div class="label" style="margin-bottom:10px;">QR Code sharing</div>
+      <h2 class="f-display" style="font-size:clamp(32px,4vw,46px);font-weight:300;margin-bottom:20px;">Share with a <em>single scan</em></h2>
+      <p style="font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:36px;">Every wedding site includes a beautifully designed QR code card. Place it on your paper invites, table settings, or order of service — guests simply scan and they're instantly on your wedding page.</p>
+
+      <div style="display:flex;flex-direction:column;gap:22px;">
+
+        <div style="display:flex;align-items:flex-start;gap:16px;">
+          <div style="width:34px;height:34px;border-radius:50%;background:var(--blush-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:500;color:var(--blush-mid);">1</div>
+          <div>
+            <div class="f-display" style="font-size:17px;font-weight:500;margin-bottom:3px;">Print your QR card</div>
+            <div style="font-size:13.5px;color:var(--muted);line-height:1.65;">Download a print-ready PDF to include with your invitations.</div>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:flex-start;gap:16px;">
+          <div style="width:34px;height:34px;border-radius:50%;background:var(--sage-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:500;color:var(--sage-mid);">2</div>
+          <div>
+            <div class="f-display" style="font-size:17px;font-weight:500;margin-bottom:3px;">Guests scan anywhere</div>
+            <div style="font-size:13.5px;color:var(--muted);line-height:1.65;">No app needed. Any smartphone camera opens your site instantly.</div>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:flex-start;gap:16px;">
+          <div style="width:34px;height:34px;border-radius:50%;background:var(--champ-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:500;color:var(--champ-mid);">3</div>
+          <div>
+            <div class="f-display" style="font-size:17px;font-weight:500;margin-bottom:3px;">Everything in one place</div>
+            <div style="font-size:13.5px;color:var(--muted);line-height:1.65;">RSVP, venue, accommodation, registry — all from one scan.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════╗ -->
+<!-- ║  PRICING                                         ║ -->
+<!-- ╚══════════════════════════════════════════════════╝ -->
+<section id="pricing" style="padding:100px 24px;" class="bg-warm">
+  <div style="max-width:1080px;margin:0 auto;">
+
+    <div style="text-align:center;margin-bottom:60px;">
+      <div class="label fade-up">Simple, transparent pricing</div>
+      <h2 class="f-display fade-up d1" style="font-size:clamp(34px,5vw,50px);font-weight:300;margin-top:10px;">Choose your <em>package</em></h2>
+      <p class="fade-up d2" style="font-size:15px;color:var(--muted);max-width:480px;margin:14px auto 0;line-height:1.8;">One-time payment. No subscriptions. Your wedding site stays live for two years.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;align-items:stretch;">
+
+      <!-- Basic -->
+      <div class="price-card fade-up d1">
+        <div class="label" style="color:var(--sage-mid);margin-bottom:14px;">Basic</div>
+        <div style="display:flex;align-items:flex-start;gap:3px;margin-bottom:6px;">
+          <span style="font-size:20px;font-weight:300;color:var(--muted);margin-top:12px;">R</span>
+          <span class="price-num">2,299</span>
+        </div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:28px;">Perfect for intimate weddings</p>
+        <div style="margin-bottom:28px;">
+          <div class="check-row"><div class="chk" style="background:var(--sage-light);"><svg width="9" height="9" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#7BA874" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><span>1-page wedding site</span></div>
+          <div class="check-row"><div class="chk" style="background:var(--sage-light);"><svg width="9" height="9" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#7BA874" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><span>RSVP form (up to 80 guests)</span></div>
+          <div class="check-row"><div class="chk" style="background:var(--sage-light);"><svg width="9" height="9" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#7BA874" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><span>Photo gallery (20 photos)</span></div>
+          <div class="check-row"><div class="chk" style="background:var(--sage-light);"><svg width="9" height="9" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#7BA874" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><span>QR code card download</span></div>
+          <div class="check-row"><div class="chk" style="background:var(--sage-light);"><svg width="9" height="9" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#7BA874" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><span>Custom subdomain</span></div>
+          <div class="check-row"><div class="chk" style="background:#f4f4f4;"><svg width="9" height="9" viewBox="0 0 12 12"><path d="M3 3l6 6M9 3l-6 6" stroke="#ccc" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><span style="color:var(--faint);">Guestbook</span></div>
+          <div class="check-row"><div class="chk" style="background:#f4f4f4;"><svg width="9" height="9" viewBox="0 0 12 12"><path d="M3 3l6 6M9 3l-6 6" stroke="#ccc" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><span style="color:var(--faint);">Wedding games</span></div>
+        </div>
+        <a href="#" class="btn-secondary" style="display:block;text-align:center;">Get Started</a>
+      </div>
+
+      <!-- Standard (featured) -->
+      <div class="price-card featured fade-up d2" style="position:relative;">
+        <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);white-space:nowrap;">
+          <span style="background:linear-gradient(135deg,var(--blush),var(--blush-mid));color:#fff;font-size:11px;font-weight:500;padding:5px 16px;border-radius:50px;letter-spacing:0.5px;">Most Popular</span>
+        </div>
+        <div class="label" style="color:var(--blush-mid);margin-bottom:14px;">Standard</div>
+        <div style="display:flex;align-items:flex-start;gap:3px;margin-bottom:6px;">
+          <span style="font-size:20px;font-weight:300;color:var(--muted);margin-top:12px;">R</span>
+          <span class="price-num">4,699</span>
+        </div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:28px;">Our most loved package</p>
+        <div style="margin-bottom:28px;">
+          <div class="check-row"><div class="chk" style="background:var(--blush-light);"><svg width="9" height="9" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#E8879E" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><span>Multi-page wedding site</span></div>
+          <div class="check-row"><div class="chk" style="background:var(--blush-light);"><svg width="9" height="9" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#E8879E" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><span>RSVP form (unlimited guests)</span></div>
+          <div class="check-row"><div class="chk" style="background:var(--blush-light);"><svg width="9" height="9" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#E8879E" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><span>Unlimited photo gallery</span></div>
+          <div class="check-row"><div class="chk" style="background:var(--blush-light);"><svg width="9" height="9" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#E8879E" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><span>Custom domain included</span></div>
+          <div class="check-row"><div class="chk" style="background:var(--blush-light);"><svg width="9" height="9" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#E8879E" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><span>Guestbook &amp; messages</span></div>
+          <div class="check-row"><div class="chk" style="background:var(--blush-light);"><svg width="9" height="9" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#E8879E" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><span>Wedding games</span></div>
+          <div class="check-row"><div class="chk" style="background:#f4f4f4;"><svg width="9" height="9" viewBox="0 0 12 12"><path d="M3 3l6 6M9 3l-6 6" stroke="#ccc" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><span style="color:var(--faint);">Live stream</span></div>
+        </div>
+        <a href="#" class="btn-primary" style="display:block;text-align:center;">Get Started</a>
+      </div>
+
+      <!-- Premium -->
+      <div class="price-card fade-up d3">
+        <div class="label" style="color:var(--champ-mid);margin-bottom:14px;">Premium</div>
+        <div style="display:flex;align-items:flex-start;gap:3px;margin-bottom:6px;">
+          <span style="font-size:20px;font-weight:300;color:var(--muted);margin-top:12px;">R</span>
+          <span class="price-num">8,199</span>
+        </div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:28px;">For the ultimate experience</p>
+        <div style="margin-bottom:28px;">
+          <div class="check-row"><div class="chk" style="background:var(--champ-light);"><svg width="9" height="9" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#C4A040" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><span>Everything in Standard</span></div>
+          <div class="check-row"><div class="chk" style="background:var(--champ-light);"><svg width="9" height="9" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#C4A040" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><span>Live stream (500 viewers)</span></div>
+          <div class="check-row"><div class="chk" style="background:var(--champ-light);"><svg width="9" height="9" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#C4A040" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><span>50 printed QR keepsake cards</span></div>
+          <div class="check-row"><div class="chk" style="background:var(--champ-light);"><svg width="9" height="9" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#C4A040" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><span>Dedicated designer support</span></div>
+          <div class="check-row"><div class="chk" style="background:var(--champ-light);"><svg width="9" height="9" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#C4A040" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><span>Post-wedding photo album book</span></div>
+          <div class="check-row"><div class="chk" style="background:var(--champ-light);"><svg width="9" height="9" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#C4A040" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><span>5-year hosting included</span></div>
+          <div class="check-row"><div class="chk" style="background:var(--champ-light);"><svg width="9" height="9" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#C4A040" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><span>Priority support</span></div>
+        </div>
+        <a href="#" class="btn-secondary" style="display:block;text-align:center;">Get Started</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════╗ -->
+<!-- ║  DEMO CAROUSEL                                   ║ -->
+<!-- ╚══════════════════════════════════════════════════╝ -->
+<section id="demo" style="padding:100px 0;overflow:hidden;">
+  <div style="max-width:1080px;margin:0 auto;padding:0 24px;">
+    <div style="text-align:center;margin-bottom:52px;">
+      <div class="label fade-up">See it in action</div>
+      <h2 class="f-display fade-up d1" style="font-size:clamp(34px,5vw,50px);font-weight:300;margin-top:10px;">Live <em>demos</em></h2>
+      <p class="fade-up d2" style="font-size:15px;color:var(--muted);max-width:500px;margin:14px auto 0;line-height:1.8;">Explore real examples of Forever Pages wedding sites — every detail crafted for your guests.</p>
+    </div>
+  </div>
+
+  <!-- Carousel track -->
+  <div class="demo-carousel">
+    <div class="demo-track" id="demo-track">
+
+      <!-- ── Slide 1: The Wedding Invitation (Emma & James) ── -->
+      <div class="demo-slide" style="padding:0 24px 8px;">
+        <div style="text-align:center;margin-bottom:28px;">
+          <div class="label" style="margin-bottom:6px;">Template 01</div>
+          <div class="f-display" style="font-size:22px;font-weight:400;">The Wedding Invitation</div>
+          <p style="font-size:13px;color:var(--muted);margin-top:4px;">Envelope reveal · Timeline · Gallery · RSVP</p>
+          <a href="demo/index.html" target="_blank" class="btn-primary" style="font-size:12px;padding:8px 20px;display:inline-block;margin-top:14px;">Open Full Demo</a>
+        </div>
+        <div class="device-scene fade-in">
+          <!-- Laptop with iframe -->
+          <div style="display:flex;flex-direction:column;align-items:center;">
+            <div class="laptop" style="width:480px;height:280px;overflow:hidden;position:relative;background:#FDF8F5;">
+              <iframe
+                src="demo/index.html"
+                style="width:960px;height:560px;border:none;transform:scale(0.5);transform-origin:top left;pointer-events:none;"
+                loading="lazy"
+                title="Emma & James wedding demo — desktop"></iframe>
+            </div>
+            <div class="laptop-base" style="width:520px;"></div>
+            <div class="device-label">Desktop</div>
+          </div>
+          <!-- Phone with iframe -->
+          <div style="display:flex;flex-direction:column;align-items:center;">
+            <div class="phone" style="overflow:hidden;position:relative;">
+              <div class="phone-notch"></div>
+              <iframe
+                src="demo/index.html"
+                style="width:388px;height:828px;border:none;transform:scale(0.5);transform-origin:top left;pointer-events:none;"
+                loading="lazy"
+                title="Emma & James wedding demo — mobile"></iframe>
+            </div>
+            <div class="device-label" style="margin-top:12px;">Mobile</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Slide 2: Dark Romance live demo ── -->
+      <div class="demo-slide" style="padding:0 24px 8px;">
+        <div style="text-align:center;margin-bottom:28px;">
+          <div class="label" style="margin-bottom:6px;">Template 02</div>
+          <div class="f-display" style="font-size:22px;font-weight:400;">Dark Romance</div>
+          <p style="font-size:13px;color:var(--muted);margin-top:4px;">Deep navy · Gold accents · Editorial aesthetic · Cinema-style reveal</p>
+          <a href="demo/dark-romance/index.html" target="_blank" class="btn-outline" style="font-size:12px;padding:8px 20px;display:inline-block;margin-top:14px;">View Full Demo</a>
+        </div>
+        <div class="device-scene fade-in">
+          <!-- Laptop mockup -->
+          <div style="display:flex;flex-direction:column;align-items:center;">
+            <div class="laptop" style="width:480px;height:280px;overflow:hidden;position:relative;">
+              <iframe src="demo/dark-romance/index.html"
+                style="width:960px;height:560px;border:none;transform:scale(0.5);transform-origin:top left;pointer-events:none;"
+                loading="lazy" scrolling="no" tabindex="-1"></iframe>
+            </div>
+            <div class="laptop-base" style="width:520px;"></div>
+            <div class="device-label">Desktop</div>
+          </div>
+          <!-- Phone mockup -->
+          <div style="display:flex;flex-direction:column;align-items:center;">
+            <div class="phone" style="overflow:hidden;position:relative;">
+              <div class="phone-notch"></div>
+              <iframe src="demo/dark-romance/index.html"
+                style="width:390px;height:844px;border:none;transform:scale(0.5);transform-origin:top left;pointer-events:none;margin-top:20px;"
+                loading="lazy" scrolling="no" tabindex="-1"></iframe>
+            </div>
+            <div class="device-label" style="margin-top:12px;">Mobile</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /demo-track -->
+  </div><!-- /demo-carousel -->
+
+  <!-- Nav controls -->
+  <div class="carousel-nav" style="margin-top:36px;">
+    <button class="carousel-btn" onclick="demoCarousel(-1)" aria-label="Previous">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <div class="carousel-dots">
+      <button class="carousel-dot active" id="dot-0" onclick="demoGoTo(0)"></button>
+      <button class="carousel-dot" id="dot-1" onclick="demoGoTo(1)"></button>
+    </div>
+    <button class="carousel-btn" onclick="demoCarousel(1)" aria-label="Next">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+  </div>
+
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════╗ -->
+<!-- ║  TESTIMONIALS                                    ║ -->
+<!-- ╚══════════════════════════════════════════════════╝ -->
+<section id="testimonials" style="padding:100px 24px;" class="bg-warm">
+  <div style="max-width:1080px;margin:0 auto;">
+
+    <div style="text-align:center;margin-bottom:60px;">
+      <div class="label fade-up">Love stories</div>
+      <h2 class="f-display fade-up d1" style="font-size:clamp(34px,5vw,50px);font-weight:300;margin-top:10px;">Happy <em>couples</em></h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;">
+
+      <div class="card fade-up d1">
+        <span class="quote-big">"</span>
+        <p style="font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:22px;">Our guests kept telling us how beautiful and easy the website was. The RSVP system meant I actually enjoyed the planning process instead of drowning in spreadsheets.</p>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--blush),var(--blush-light));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--blush-mid);">S</div>
+          <div>
+            <div class="f-display" style="font-size:15px;font-weight:500;">Sophie &amp; Callum</div>
+            <div style="font-size:11px;color:var(--faint);">Married June 2024 · Cape Town</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up d2">
+        <span class="quote-big">"</span>
+        <p style="font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:22px;">The QR code idea was genius. We put them on the table settings and even older relatives who we expected to struggle were scanning them with no trouble at all!</p>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--sage),var(--sage-light));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--sage-mid);">A</div>
+          <div>
+            <div class="f-display" style="font-size:15px;font-weight:500;">Amara &amp; Tom</div>
+            <div style="font-size:11px;color:var(--faint);">Married September 2024 · Johannesburg</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card fade-up d3">
+        <span class="quote-big">"</span>
+        <p style="font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:22px;">We used the live stream for family in Australia. Seeing their faces light up on the screen during our ceremony was one of the most magical parts of the whole day.</p>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--champ),var(--champ-light));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--champ-mid);">L</div>
+          <div>
+            <div class="f-display" style="font-size:15px;font-weight:500;">Lucy &amp; James</div>
+            <div style="font-size:11px;color:var(--faint);">Married March 2025 · Durban</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════╗ -->
+<!-- ║  BLOG                                            ║ -->
+<!-- ╚══════════════════════════════════════════════════╝ -->
+<section id="blog" style="padding:100px 24px;">
+  <div style="max-width:1080px;margin:0 auto;">
+
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px;margin-bottom:52px;">
+      <div>
+        <div class="label fade-up">From the blog</div>
+        <h2 class="f-display fade-up d1" style="font-size:clamp(34px,5vw,50px);font-weight:300;margin-top:10px;">Wedding <em>inspiration</em></h2>
+      </div>
+      <a href="#" class="btn-secondary fade-up" style="font-size:13px;">View all posts</a>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;">
+
+      <div class="blog-card fade-up d1">
+        <div class="blog-thumb" style="background:linear-gradient(135deg,#FBE8EE 0%,#F4A7B9 55%,#F5E6C8 100%);display:flex;align-items:center;justify-content:center;">
+          <div class="f-script" style="font-size:42px;color:rgba(255,255,255,0.8);">Invitations</div>
+        </div>
+        <div style="padding:22px 24px 28px;">
+          <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--faint);margin-bottom:8px;">Planning</div>
+          <h3 class="f-display" style="font-size:19px;font-weight:500;margin-bottom:8px;line-height:1.35;">10 Ways to Make Your Wedding Invitations Unforgettable</h3>
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:14px;">From wax seals to QR codes, these touches will make guests treasure your invitations long after the day.</p>
+          <a href="#" style="font-size:13px;font-weight:500;color:var(--blush-mid);text-decoration:none;">Read more →</a>
+        </div>
+      </div>
+
+      <div class="blog-card fade-up d2">
+        <div class="blog-thumb" style="background:linear-gradient(135deg,#EBF3E9 0%,#B2C9AD 55%,#F5E6C8 100%);display:flex;align-items:center;justify-content:center;">
+          <div class="f-script" style="font-size:42px;color:rgba(255,255,255,0.8);">RSVPs</div>
+        </div>
+        <div style="padding:22px 24px 28px;">
+          <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--faint);margin-bottom:8px;">Guest Management</div>
+          <h3 class="f-display" style="font-size:19px;font-weight:500;margin-bottom:8px;line-height:1.35;">The Modern Couple's Guide to Stress-Free RSVPs</h3>
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:14px;">Chasing RSVPs doesn't have to be a nightmare. Here's how digital tools have transformed the process.</p>
+          <a href="#" style="font-size:13px;font-weight:500;color:var(--sage-mid);text-decoration:none;">Read more →</a>
+        </div>
+      </div>
+
+      <div class="blog-card fade-up d3">
+        <div class="blog-thumb" style="background:linear-gradient(135deg,#FDF6E9 0%,#F5E6C8 55%,#FBE8EE 100%);display:flex;align-items:center;justify-content:center;">
+          <div class="f-script" style="font-size:42px;color:rgba(200,160,60,0.5);">Memories</div>
+        </div>
+        <div style="padding:22px 24px 28px;">
+          <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--faint);margin-bottom:8px;">Inspiration</div>
+          <h3 class="f-display" style="font-size:19px;font-weight:500;margin-bottom:8px;line-height:1.35;">Why Every Couple Needs a Digital Wedding Archive</h3>
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:14px;">Your photos, messages, and memories deserve a beautiful permanent home. Here's how to create one.</p>
+          <a href="#" style="font-size:13px;font-weight:500;color:var(--champ-mid);text-decoration:none;">Read more →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════╗ -->
+<!-- ║  FINAL CTA                                       ║ -->
+<!-- ╚══════════════════════════════════════════════════╝ -->
+<section id="cta" style="padding:120px 24px;position:relative;overflow:hidden;" class="bg-cta">
+
+  <!-- Glows -->
+  <div class="glow" style="width:500px;height:500px;top:-100px;left:-80px;background:radial-gradient(circle,rgba(244,167,185,0.18) 0%,transparent 70%);"></div>
+  <div class="glow" style="width:400px;height:400px;bottom:-60px;right:-60px;background:radial-gradient(circle,rgba(178,201,173,0.15) 0%,transparent 70%);"></div>
+
+  <div style="max-width:640px;margin:0 auto;text-align:center;position:relative;z-index:1;">
+
+    <div class="f-script fade-up" style="font-size:64px;color:var(--text);margin-bottom:8px;">Begin your story</div>
+
+    <h2 class="f-display fade-up d1" style="font-size:clamp(26px,4vw,38px);font-weight:300;margin-bottom:16px;">
+      Your perfect digital wedding <em>starts here</em>
+    </h2>
+
+    <p class="fade-up d2" style="font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:40px;">
+      Join over 2,400 couples who've created beautiful digital wedding experiences with Forever Pages. Start today and be live within 24 hours.
+    </p>
+
+    <!-- Email form -->
+    <div class="fade-up d3" style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center;margin-bottom:16px;">
+      <input type="email" class="email-input" placeholder="Enter your email address">
+      <a href="#" class="btn-primary">Get Started Free</a>
+    </div>
+
+    <div class="fade-up d4" style="font-size:12px;color:var(--faint);margin-bottom:52px;">
+      No commitment required. Free consultation with our wedding team.
+    </div>
+
+    <!-- Trust row -->
+    <div class="fade-up d5" style="display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap;">
+      <div style="text-align:center;">
+        <div class="f-display" style="font-size:28px;font-weight:300;color:var(--blush-mid);">2,400+</div>
+        <div style="font-size:11px;color:var(--faint);margin-top:3px;">Weddings</div>
+      </div>
+      <div style="width:1px;height:30px;background:rgba(0,0,0,0.1);"></div>
+      <div style="text-align:center;">
+        <div class="f-display" style="font-size:28px;font-weight:300;color:var(--sage-mid);">★ 4.9</div>
+        <div style="font-size:11px;color:var(--faint);margin-top:3px;">Average rating</div>
+      </div>
+      <div style="width:1px;height:30px;background:rgba(0,0,0,0.1);"></div>
+      <div style="text-align:center;">
+        <div class="f-display" style="font-size:28px;font-weight:300;color:var(--champ-mid);">24h</div>
+        <div style="font-size:11px;color:var(--faint);margin-top:3px;">Go live time</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════╗ -->
+<!-- ║  FOOTER                                          ║ -->
+<!-- ╚══════════════════════════════════════════════════╝ -->
+<footer style="background:#242424;color:#6B6B6B;padding:60px 32px 32px;">
+  <div style="max-width:1080px;margin:0 auto;">
+
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:48px;flex-wrap:wrap;">
+
+      <div>
+        <div class="f-script" style="font-size:30px;color:#fff;margin-bottom:10px;">Forever Pages</div>
+        <p style="font-size:13px;line-height:1.75;max-width:260px;">Beautiful digital wedding experiences for modern couples. Your day, remembered forever.</p>
+      </div>
+
+      <div>
+        <div style="font-size:12px;font-weight:500;color:#fff;margin-bottom:16px;letter-spacing:0.5px;">Product</div>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:13px;">
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#demo">Demo</a>
+          <a href="#">Templates</a>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size:12px;font-weight:500;color:#fff;margin-bottom:16px;letter-spacing:0.5px;">Company</div>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:13px;">
+          <a href="#">About</a>
+          <a href="#blog">Blog</a>
+          <a href="#">Contact</a>
+          <a href="#">Privacy</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="border-top:1px solid #333;padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+      <div style="font-size:12px;">© 2025 Forever Pages. Made with love in South Africa.</div>
+      <div style="display:flex;gap:20px;font-size:12px;">
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ╔══════════════════════════════════════════════════╗ -->
+<!-- ║  JS                                              ║ -->
+<!-- ╚══════════════════════════════════════════════════╝ -->
+<script>
+  // ── Navbar scroll ──────────────────────────────────
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // ── Intersection Observer ───────────────────────────
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-up, .fade-in').forEach(el => io.observe(el));
+
+  // Trigger hero immediately
+  setTimeout(() => {
+    document.querySelectorAll('#hero-placeholder .fade-up, #hero-placeholder .fade-in').forEach(el => el.classList.add('visible'));
+    // Hero is in the first section
+    document.querySelectorAll('section:first-of-type .fade-up, section:first-of-type .fade-in').forEach(el => el.classList.add('visible'));
+  }, 80);
+
+  // ── Petal canvas ────────────────────────────────────
+  const canvas = document.getElementById('petal-canvas');
+  const ctx = canvas.getContext('2d');
+
+  function resize() {
+    canvas.width = canvas.parentElement.offsetWidth;
+    canvas.height = canvas.parentElement.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const PALETTE = [
+    'rgba(244,167,185,', // blush
+    'rgba(178,201,173,', // sage
+    'rgba(245,230,200,', // champ
+    'rgba(244,167,185,', // blush again (weight)
+  ];
+
+  const petals = Array.from({ length: 36 }, () => ({
+    x:   Math.random() * window.innerWidth,
+    y:   Math.random() * window.innerHeight,
+    r:   Math.random() * 9 + 5,
+    vx:  (Math.random() - 0.5) * 0.3,
+    vy:  Math.random() * 0.45 + 0.15,
+    rot: Math.random() * Math.PI * 2,
+    vr:  (Math.random() - 0.5) * 0.018,
+    a:   Math.random() * 0.45 + 0.15,
+    col: PALETTE[Math.floor(Math.random() * PALETTE.length)],
+  }));
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    petals.forEach(p => {
+      p.x  += p.vx;
+      p.y  += p.vy;
+      p.rot += p.vr;
+      if (p.y > canvas.height + 20) { p.y = -20; p.x = Math.random() * canvas.width; }
+      if (p.x < -20) p.x = canvas.width + 20;
+      if (p.x > canvas.width + 20) p.x = -20;
+
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.fillStyle = p.col + p.a + ')';
+      ctx.beginPath();
+      ctx.ellipse(0, 0, p.r * 0.45, p.r, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+
+  // ── Demo carousel ──────────────────────────────────
+  let demoIdx = 0;
+  const demoTotal = 2;
+
+  function demoGoTo(idx) {
+    demoIdx = idx;
+    document.getElementById('demo-track').style.transform = `translateX(-${idx * 100}%)`;
+    document.querySelectorAll('.carousel-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === idx);
+    });
+  }
+
+  function demoCarousel(dir) {
+    demoGoTo((demoIdx + dir + demoTotal) % demoTotal);
+  }
+
+  // ── Mobile menu ────────────────────────────────────
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const burger = document.getElementById('hamburger');
+    const isOpen = menu.classList.toggle('open');
+    burger.classList.toggle('open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  }
+
+  function closeMobileMenu() {
+    document.getElementById('mobile-menu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+</script>
+
+</body>
+</html>
