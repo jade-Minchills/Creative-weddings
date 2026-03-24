@@ -387,6 +387,56 @@
     }
     @media (max-width: 900px)  { .features-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 480px)  { .features-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
+
+    /* ── Mobile responsive overrides ─────────────────── */
+
+    /* QR section: stack vertically */
+    @media (max-width: 780px) {
+      .qr-split {
+        grid-template-columns: 1fr !important;
+        gap: 48px !important;
+        text-align: center;
+      }
+    }
+
+    /* Footer grid: stack */
+    @media (max-width: 720px) {
+      .footer-grid {
+        grid-template-columns: 1fr !important;
+        gap: 32px !important;
+      }
+    }
+
+    /* Demo section: hide laptop frame on mobile, keep phone */
+    @media (max-width: 720px) {
+      .device-scene > div:first-child { display: none; }
+      .device-scene { gap: 0; }
+    }
+
+    /* Hero stats: tighten up on small screens */
+    @media (max-width: 400px) {
+      .hero-stats {
+        gap: 12px !important;
+        margin-top: 44px !important;
+      }
+      .hero-stats .f-display { font-size: 26px !important; }
+    }
+
+    /* Section vertical padding: reduce on mobile */
+    @media (max-width: 640px) {
+      #why, #features, #qr, #pricing, #testimonials, #blog {
+        padding-top: 72px !important;
+        padding-bottom: 72px !important;
+      }
+      #demo { padding-top: 72px !important; }
+      #cta  { padding-top: 80px !important; padding-bottom: 80px !important; }
+      footer { padding-top: 48px !important; padding-left: 20px !important; padding-right: 20px !important; }
+    }
+
+    /* Email input: stretch on very small screens */
+    @media (max-width: 480px) {
+      .email-input { width: 100% !important; max-width: 320px; }
+    }
   </style>
 </head>
 <body>
@@ -496,7 +546,7 @@
     </div>
 
     <!-- Stats row -->
-    <div class="fade-up d5" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px;padding-top:40px;border-top:1px solid rgba(0,0,0,0.06);">
+    <div class="fade-up d5 hero-stats" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px;padding-top:40px;border-top:1px solid rgba(0,0,0,0.06);">
       <div>
         <div class="f-display" style="font-size:32px;font-weight:300;color:var(--blush-mid);">2,400+</div>
         <div style="font-size:12px;color:var(--faint);margin-top:4px;">Couples served</div>
@@ -659,7 +709,7 @@
 <!-- ║  QR CODE SECTION                                 ║ -->
 <!-- ╚══════════════════════════════════════════════════╝ -->
 <section id="qr" style="padding:100px 24px;">
-  <div style="max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+  <div class="qr-split" style="max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
 
     <!-- Visual -->
     <div style="display:flex;justify-content:center;" class="fade-in">
@@ -1102,7 +1152,7 @@
 <footer style="background:#242424;color:#6B6B6B;padding:60px 32px 32px;">
   <div style="max-width:1080px;margin:0 auto;">
 
-    <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:48px;flex-wrap:wrap;">
+    <div class="footer-grid" style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:48px;flex-wrap:wrap;">
 
       <div>
         <div class="f-script" style="font-size:30px;color:#fff;margin-bottom:10px;">Forever Pages</div>
