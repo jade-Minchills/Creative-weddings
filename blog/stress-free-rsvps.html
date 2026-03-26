@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Modern Couple's Guide to Stress-Free RSVPs — Forever Pages Blog</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --blush:        #F4A7B9;
+      --blush-mid:    #E8879E;
+      --blush-light:  #FBE8EE;
+      --sage:         #B2C9AD;
+      --sage-mid:     #7BA874;
+      --sage-light:   #EBF3E9;
+      --champ:        #F5E6C8;
+      --champ-mid:    #C4A040;
+      --champ-light:  #FDF6E9;
+      --bg:           #FAFAFA;
+      --text:         #2A2A2A;
+      --muted:        #7A7A7A;
+      --faint:        #B0B0B0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .f-script  { font-family: 'Great Vibes', cursive; }
+    .f-display { font-family: 'Cormorant Garamond', serif; }
+
+    /* Navbar */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 18px 32px;
+      background: rgba(250,250,250,0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+    }
+    .nav-inner {
+      max-width: 1080px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-family: 'Great Vibes', cursive; font-size: 26px; color: var(--text); text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--blush-mid); }
+    @media (max-width: 680px) { .nav-links { display: none; } }
+
+    .btn-primary {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--blush) 0%, var(--blush-mid) 100%);
+      color: #fff; padding: 10px 24px; border-radius: 50px;
+      font-size: 13px; font-weight: 500; text-decoration: none;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 4px 18px rgba(232,135,158,0.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(232,135,158,0.45); }
+
+    /* Article layout */
+    .article-hero {
+      padding: 120px 24px 64px;
+      background: linear-gradient(180deg, #EEF6EC 0%, #FAFAFA 100%);
+      text-align: center;
+    }
+
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    .article-body h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px; font-weight: 500;
+      margin: 48px 0 16px;
+      color: var(--text);
+    }
+
+    .article-body p {
+      font-size: 15px;
+      color: #484848;
+      line-height: 1.85;
+      margin-bottom: 20px;
+    }
+
+    .article-body ul {
+      margin: 16px 0 24px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .article-body ul li {
+      font-size: 15px;
+      color: #484848;
+      line-height: 1.75;
+      padding-left: 22px;
+      position: relative;
+    }
+
+    .article-body ul li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 9px;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--sage);
+    }
+
+    .tip-card {
+      background: var(--sage-light);
+      border-left: 3px solid var(--sage-mid);
+      border-radius: 0 12px 12px 0;
+      padding: 18px 22px;
+      margin: 24px 0;
+    }
+
+    .tip-card p { margin: 0; font-size: 14px; color: var(--text); }
+    .tip-card strong { color: var(--sage-mid); }
+
+    .step-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 26px;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 18px rgba(0,0,0,0.05);
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--sage-light), var(--sage));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px; font-weight: 600;
+      color: var(--sage-mid);
+      flex-shrink: 0;
+    }
+
+    .step-body h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px; font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .step-body p { margin: 0; font-size: 14px; color: #5A5A5A; line-height: 1.75; }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin: 36px 0;
+    }
+
+    .stat-box {
+      background: #fff;
+      border-radius: 16px;
+      padding: 24px 16px;
+      text-align: center;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+    }
+
+    .divider {
+      display: flex; align-items: center; gap: 12px; justify-content: center;
+      margin: 48px 0;
+    }
+    .divider-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(178,201,173,0.5)); }
+    .divider-line.r { background: linear-gradient(90deg, rgba(178,201,173,0.5), transparent); }
+
+    .cta-box {
+      background: linear-gradient(135deg, #EBF3E9 0%, #FBE8EE 100%);
+      border-radius: 24px;
+      padding: 44px 40px;
+      text-align: center;
+      margin: 60px 0;
+      border: 1px solid rgba(178,201,173,0.3);
+    }
+
+    .related-card {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 18px rgba(0,0,0,0.05);
+      transition: transform 0.25s ease;
+      text-decoration: none;
+      color: var(--text);
+      display: block;
+    }
+    .related-card:hover { transform: translateY(-4px); }
+    .related-thumb { height: 140px; }
+
+    footer a { text-decoration: none; color: #6B6B6B; transition: color 0.2s; }
+    footer a:hover { color: #fff; }
+
+    @media (max-width: 680px) {
+      .article-hero { padding: 100px 20px 48px; }
+      .article-body { padding: 0 20px 60px; }
+      .cta-box { padding: 32px 24px; }
+      .stat-row { grid-template-columns: 1fr; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">Forever Pages</a>
+    <div class="nav-links">
+      <a href="../index.html#features">Features</a>
+      <a href="../index.html#demo">Demos</a>
+      <a href="../index.html#pricing">Pricing</a>
+      <a href="../index.html#blog">Blog</a>
+    </div>
+    <a href="../index.html#pricing" class="btn-primary">Get Started</a>
+  </div>
+</nav>
+
+
+<!-- Article Hero -->
+<div class="article-hero">
+  <div style="max-width:760px;margin:0 auto;">
+    <div style="display:flex;align-items:center;gap:8px;justify-content:center;font-size:12px;color:var(--faint);margin-bottom:24px;">
+      <a href="../index.html" style="color:var(--muted);text-decoration:none;">Home</a>
+      <span>/</span>
+      <a href="../index.html#blog" style="color:var(--muted);text-decoration:none;">Blog</a>
+      <span>/</span>
+      <span>Guest Management</span>
+    </div>
+
+    <div style="font-size:11px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--sage-mid);margin-bottom:16px;">Guest Management</div>
+
+    <h1 class="f-display" style="font-size:clamp(30px,6vw,54px);font-weight:300;line-height:1.2;margin-bottom:20px;">
+      The Modern Couple's Guide to <em>Stress-Free RSVPs</em>
+    </h1>
+
+    <p style="font-size:15px;color:var(--muted);max-width:560px;margin:0 auto 28px;line-height:1.8;">
+      Chasing RSVPs doesn't have to be a nightmare. Here's how digital tools have transformed guest management — and how to make it work beautifully for your wedding.
+    </p>
+
+    <div style="display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;font-size:12px;color:var(--faint);">
+      <span>By the Forever Pages Team</span>
+      <span>·</span>
+      <span>28 February 2026</span>
+      <span>·</span>
+      <span>7 min read</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- Header image -->
+<div style="background:linear-gradient(135deg,#EBF3E9 0%,#B2C9AD 50%,#F5E6C8 100%);height:320px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+  <div class="f-script" style="font-size:clamp(80px,18vw,160px);color:rgba(255,255,255,0.25);line-height:1;user-select:none;">RSVPs</div>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,#FAFAFA 100%);pointer-events:none;"></div>
+</div>
+
+
+<!-- Article Body -->
+<article class="article-body">
+
+  <p>The RSVP. Two little letters that somehow become one of the most stressful parts of wedding planning. You send out beautiful invitations, wait patiently, and then — silence. Or worse, a trickle of responses that never quite reaches the number you need to confirm with your venue and caterer. Sound familiar?</p>
+
+  <p>The good news is that modern digital tools have completely changed how couples manage their guest lists. When done well, your RSVP process can be smooth, fast, and even enjoyable. Here's everything you need to know.</p>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z" fill="#B2C9AD"/></svg>
+    <div class="divider-line r"></div>
+  </div>
+
+  <h2>Why Traditional RSVPs Fall Short</h2>
+
+  <p>The classic approach — a printed RSVP card inside the invitation envelope — was designed for a pre-smartphone world. Guests need to find a pen, fill it in, find a stamp, find a post box, and actually post it. That's five steps between "yes, I'm attending" and you receiving confirmation.</p>
+
+  <p>Studies show that couples typically receive only 50–60% of RSVP cards back. The rest requires awkward follow-up phone calls, messages to parents of guests ("can you ask your daughter if she's coming?"), and increasingly desperate chasing in the final weeks before your deadline.</p>
+
+  <div class="stat-row">
+    <div class="stat-box">
+      <div class="f-display" style="font-size:38px;font-weight:300;color:var(--sage-mid);">87%</div>
+      <div style="font-size:12px;color:var(--faint);margin-top:4px;">of digital RSVPs completed within 48 hours</div>
+    </div>
+    <div class="stat-box">
+      <div class="f-display" style="font-size:38px;font-weight:300;color:var(--blush-mid);">3×</div>
+      <div style="font-size:12px;color:var(--faint);margin-top:4px;">faster response rate vs. paper RSVP cards</div>
+    </div>
+    <div class="stat-box">
+      <div class="f-display" style="font-size:38px;font-weight:300;color:var(--champ-mid);">96%</div>
+      <div style="font-size:12px;color:var(--faint);margin-top:4px;">completion rate for online RSVP forms</div>
+    </div>
+  </div>
+
+  <h2>Setting Up a Digital RSVP System That Works</h2>
+
+  <p>A great digital RSVP process has five components: a clear deadline, a friction-free form, dietary collection, gentle reminders, and easy reporting. Here's how to get each one right.</p>
+
+  <div class="step-card">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <h3>Set a Clear, Specific Deadline</h3>
+      <p>Vague deadlines get ignored. "Please RSVP by the 15th of April" is far more effective than "Please respond as soon as possible". Set your deadline at least six weeks before the wedding — venues and caterers typically need final numbers four to eight weeks in advance. Put the date prominently on both your printed invitation and your digital website.</p>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <h3>Make the Form Beautifully Simple</h3>
+      <p>Your RSVP form should ask for: name, attending yes/no, meal choice (if relevant), and dietary requirements. That's it. Every additional field reduces completion rates. If you need extra information (song requests, accommodation preferences), add those as optional fields after the core RSVP is submitted.</p>
+    </div>
+  </div>
+
+  <div class="tip-card">
+    <p><strong>Forever Pages tip:</strong> Our RSVP forms are designed to work perfectly on mobile — most guests will respond on their phones. We use large tap targets, smart validation, and an instant confirmation screen so guests know their response was received.</p>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <h3>Collect Dietary Requirements Thoughtfully</h3>
+      <p>Dietary needs are where paper RSVP cards really struggle — there's rarely enough space for guests to write clearly, and handwriting is often illegible. A digital form lets you offer structured options (vegetarian, vegan, gluten-free, halaal, kosher) plus a free-text field for allergies. You receive clean, readable data that you can share directly with your caterer.</p>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <h3>Send Reminders Without Feeling Awkward</h3>
+      <p>At two weeks before your deadline, you'll likely still have 20–30% of guests who haven't responded. A gentle group message is perfectly acceptable: "Just a friendly reminder — we'd love to know if you can make it. RSVPs close on [date]. You can respond here: [link]." Most people genuinely just forgot, and they're grateful for the nudge rather than embarrassed by it.</p>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">5</div>
+    <div class="step-body">
+      <h3>Use a Real-Time Dashboard</h3>
+      <p>One of the biggest advantages of digital RSVPs is that you can see your responses in real time. Rather than waiting for the post each day and manually updating a spreadsheet, your website dashboard updates instantly when someone responds. You can see at a glance how many have confirmed, how many declined, and who still hasn't replied — making your follow-up conversations much more targeted.</p>
+    </div>
+  </div>
+
+  <h2>Managing Plus-Ones and Children</h2>
+
+  <p>Plus-ones and children at weddings are a sensitive area. Your digital RSVP form can handle this gracefully. Rather than a generic "How many people are attending?" field, you can pre-populate the form for each guest (or household) so they can only add the people they're actually invited to bring. This avoids the awkward conversation where a guest assumes their new partner is invited when you hadn't planned for them.</p>
+
+  <p>If your venue has a children's menu or crèche facilities, the RSVP form is the ideal place to collect this information. Ask parents to list children's names and ages so you can plan seating and catering accordingly.</p>
+
+  <h2>What to Do After the Deadline</h2>
+
+  <p>When your RSVP deadline passes, you'll still have a handful of guests who haven't responded. At this point, a personal phone call or message is appropriate — these are usually people who are either unsure about attending or who genuinely missed the deadline. Keep the conversation light: "Hey, we haven't heard from you yet — we'd really love to know if you're able to make it. We just need to give our caterer the final numbers."</p>
+
+  <p>For anyone who responds after your deadline, use your own judgement. If you have flexibility in your final numbers, accommodating a late RSVP is always a kind gesture. If you're at exact capacity, it's perfectly reasonable to explain that you needed to confirm numbers with the venue and aren't able to adjust.</p>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z" fill="#B2C9AD"/></svg>
+    <div class="divider-line r"></div>
+  </div>
+
+  <h2>The Takeaway</h2>
+
+  <p>A stress-free RSVP process comes down to reducing friction at every step. The easier you make it for guests to respond — and the clearer your deadline — the faster and more completely they'll respond. A digital RSVP system built into your wedding website isn't just convenient; it genuinely transforms one of planning's most anxiety-inducing tasks into something you can sit back and watch complete itself.</p>
+
+  <p>Your wedding planning should feel exciting, not exhausting. Getting your RSVP process right is one of the best investments you can make in your own peace of mind.</p>
+
+  <!-- CTA -->
+  <div class="cta-box">
+    <div class="f-script" style="font-size:52px;color:var(--text);margin-bottom:8px;">Make it easy</div>
+    <h3 class="f-display" style="font-size:24px;font-weight:300;margin-bottom:12px;">Built-in RSVP management, included in every plan</h3>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:24px;line-height:1.7;">Every Forever Pages wedding website includes a fully customisable RSVP system with dietary collection, real-time responses, and a dashboard you'll actually enjoy using.</p>
+    <a href="../index.html#pricing" class="btn-primary" style="font-size:14px;padding:13px 30px;">View Our Plans</a>
+  </div>
+
+</article>
+
+
+<!-- Related Posts -->
+<section style="background:#fff;padding:60px 24px;">
+  <div style="max-width:720px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:36px;">
+      <div style="font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--sage-mid);margin-bottom:10px;">Keep reading</div>
+      <h2 class="f-display" style="font-size:30px;font-weight:300;">More from the blog</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;">
+
+      <a href="unforgettable-invitations.html" class="related-card">
+        <div class="related-thumb" style="background:linear-gradient(135deg,#FBE8EE 0%,#F4A7B9 55%,#F5E6C8 100%);display:flex;align-items:center;justify-content:center;">
+          <div class="f-script" style="font-size:36px;color:rgba(255,255,255,0.8);">Invitations</div>
+        </div>
+        <div style="padding:18px 20px 22px;">
+          <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--faint);margin-bottom:6px;">Planning</div>
+          <h3 class="f-display" style="font-size:17px;font-weight:500;margin-bottom:6px;line-height:1.35;">10 Ways to Make Your Wedding Invitations Unforgettable</h3>
+          <span style="font-size:12px;font-weight:500;color:var(--blush-mid);">Read more →</span>
+        </div>
+      </a>
+
+      <a href="digital-wedding-archive.html" class="related-card">
+        <div class="related-thumb" style="background:linear-gradient(135deg,#FDF6E9 0%,#F5E6C8 55%,#FBE8EE 100%);display:flex;align-items:center;justify-content:center;">
+          <div class="f-script" style="font-size:36px;color:rgba(200,160,60,0.5);">Memories</div>
+        </div>
+        <div style="padding:18px 20px 22px;">
+          <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--faint);margin-bottom:6px;">Inspiration</div>
+          <h3 class="f-display" style="font-size:17px;font-weight:500;margin-bottom:6px;line-height:1.35;">Why Every Couple Needs a Digital Wedding Archive</h3>
+          <span style="font-size:12px;font-weight:500;color:var(--champ-mid);">Read more →</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- Footer -->
+<footer style="background:#242424;color:#6B6B6B;padding:48px 32px 28px;">
+  <div style="max-width:1080px;margin:0 auto;">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;margin-bottom:28px;">
+      <div class="f-script" style="font-size:28px;color:#fff;">Forever Pages</div>
+      <div style="display:flex;gap:24px;font-size:13px;flex-wrap:wrap;">
+        <a href="../index.html#features">Features</a>
+        <a href="../index.html#pricing">Pricing</a>
+        <a href="../index.html#blog">Blog</a>
+        <a href="../index.html#pricing">Get Started</a>
+      </div>
+    </div>
+    <div style="border-top:1px solid #333;padding-top:20px;font-size:12px;">
+      © 2025 Forever Pages. Made with love in South Africa.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

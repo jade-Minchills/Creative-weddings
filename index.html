@@ -424,18 +424,66 @@
 
     /* Section vertical padding: reduce on mobile */
     @media (max-width: 640px) {
-      #why, #features, #qr, #pricing, #testimonials, #blog {
+      #why, #features, #qr, #pricing, #demo, #testimonials, #blog, #cta {
         padding-top: 72px !important;
         padding-bottom: 72px !important;
       }
-      #demo { padding-top: 72px !important; }
-      #cta  { padding-top: 80px !important; padding-bottom: 80px !important; }
       footer { padding-top: 48px !important; padding-left: 20px !important; padding-right: 20px !important; }
     }
 
     /* Email input: stretch on very small screens */
     @media (max-width: 480px) {
       .email-input { width: 100% !important; max-width: 320px; }
+    }
+
+    /* btn-outline — used on demo slide 2 */
+    .btn-outline {
+      display: inline-block;
+      background: transparent;
+      color: var(--text);
+      padding: 8px 20px;
+      border-radius: 50px;
+      border: 1.5px solid rgba(178,201,173,0.65);
+      font-size: 12px;
+      font-weight: 400;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+    .btn-outline:hover {
+      background: var(--sage-light);
+      border-color: var(--sage);
+      transform: translateY(-2px);
+    }
+
+    /* Trust badge dividers: hide on mobile when row wraps */
+    @media (max-width: 520px) {
+      .trust-divider { display: none !important; }
+    }
+
+    /* Pricing grid: ensure single column on narrow phones */
+    @media (max-width: 320px) {
+      #pricing .price-card { min-width: 0 !important; }
+    }
+
+    /* Demo device: scale phone down slightly on mid screens to avoid overflow */
+    @media (max-width: 560px) {
+      .phone {
+        width: 170px !important;
+        height: 348px !important;
+      }
+      .phone iframe {
+        width: 340px !important;
+        height: 696px !important;
+        transform: scale(0.5) !important;
+      }
+    }
+
+    /* CTA email form: stack on mobile */
+    @media (max-width: 480px) {
+      #cta .email-input {
+        width: 100%;
+        max-width: 100%;
+      }
     }
   </style>
 </head>
@@ -1047,7 +1095,7 @@
         <div class="label fade-up">From the blog</div>
         <h2 class="f-display fade-up d1" style="font-size:clamp(34px,5vw,50px);font-weight:300;margin-top:10px;">Wedding <em>inspiration</em></h2>
       </div>
-      <a href="#" class="btn-secondary fade-up" style="font-size:13px;">View all posts</a>
+      <a href="blog/unforgettable-invitations.html" class="btn-secondary fade-up" style="font-size:13px;">View all posts</a>
     </div>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;">
@@ -1060,7 +1108,7 @@
           <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--faint);margin-bottom:8px;">Planning</div>
           <h3 class="f-display" style="font-size:19px;font-weight:500;margin-bottom:8px;line-height:1.35;">10 Ways to Make Your Wedding Invitations Unforgettable</h3>
           <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:14px;">From wax seals to QR codes, these touches will make guests treasure your invitations long after the day.</p>
-          <a href="#" style="font-size:13px;font-weight:500;color:var(--blush-mid);text-decoration:none;">Read more →</a>
+          <a href="blog/unforgettable-invitations.html" style="font-size:13px;font-weight:500;color:var(--blush-mid);text-decoration:none;">Read more →</a>
         </div>
       </div>
 
@@ -1072,7 +1120,7 @@
           <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--faint);margin-bottom:8px;">Guest Management</div>
           <h3 class="f-display" style="font-size:19px;font-weight:500;margin-bottom:8px;line-height:1.35;">The Modern Couple's Guide to Stress-Free RSVPs</h3>
           <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:14px;">Chasing RSVPs doesn't have to be a nightmare. Here's how digital tools have transformed the process.</p>
-          <a href="#" style="font-size:13px;font-weight:500;color:var(--sage-mid);text-decoration:none;">Read more →</a>
+          <a href="blog/stress-free-rsvps.html" style="font-size:13px;font-weight:500;color:var(--sage-mid);text-decoration:none;">Read more →</a>
         </div>
       </div>
 
@@ -1084,7 +1132,7 @@
           <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--faint);margin-bottom:8px;">Inspiration</div>
           <h3 class="f-display" style="font-size:19px;font-weight:500;margin-bottom:8px;line-height:1.35;">Why Every Couple Needs a Digital Wedding Archive</h3>
           <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:14px;">Your photos, messages, and memories deserve a beautiful permanent home. Here's how to create one.</p>
-          <a href="#" style="font-size:13px;font-weight:500;color:var(--champ-mid);text-decoration:none;">Read more →</a>
+          <a href="blog/digital-wedding-archive.html" style="font-size:13px;font-weight:500;color:var(--champ-mid);text-decoration:none;">Read more →</a>
         </div>
       </div>
 
@@ -1130,12 +1178,12 @@
         <div class="f-display" style="font-size:28px;font-weight:300;color:var(--blush-mid);">2,400+</div>
         <div style="font-size:11px;color:var(--faint);margin-top:3px;">Weddings</div>
       </div>
-      <div style="width:1px;height:30px;background:rgba(0,0,0,0.1);"></div>
+      <div class="trust-divider" style="width:1px;height:30px;background:rgba(0,0,0,0.1);"></div>
       <div style="text-align:center;">
         <div class="f-display" style="font-size:28px;font-weight:300;color:var(--sage-mid);">★ 4.9</div>
         <div style="font-size:11px;color:var(--faint);margin-top:3px;">Average rating</div>
       </div>
-      <div style="width:1px;height:30px;background:rgba(0,0,0,0.1);"></div>
+      <div class="trust-divider" style="width:1px;height:30px;background:rgba(0,0,0,0.1);"></div>
       <div style="text-align:center;">
         <div class="f-display" style="font-size:28px;font-weight:300;color:var(--champ-mid);">24h</div>
         <div style="font-size:11px;color:var(--faint);margin-top:3px;">Go live time</div>
